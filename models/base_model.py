@@ -25,6 +25,7 @@ class BaseModel():
             to_dict(self) - returns a dictionary with all attributes of the object
                             ie, keys and values of __dict__
     """
+    
     def __init__(self, *args, **kwargs):
         """Object instantiation method:
             arguments:
