@@ -2,6 +2,7 @@
 
 from uuid import uuid4
 import datetime
+from models import storage
 
 """This module defines the class BaseModel,
     which defines all the common attributes
@@ -46,7 +47,7 @@ class BaseModel():
         else:
             self.id = str(uuid4())
             self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """String representation of BaseModel object
@@ -65,6 +66,7 @@ class BaseModel():
                     nil
         """
         self.updated_at = datetime.datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Create a dictionary representation of an object
