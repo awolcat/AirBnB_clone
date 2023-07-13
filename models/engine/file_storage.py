@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """serializes instances to JSON file, deserializes JSON file to instances"""
 import json
+from models.base_model import BaseModel
 
 class FileStorage:
     """file storage creation"""
