@@ -2,6 +2,7 @@
 """serializes instances to JSON file, deserializes JSON file to instances"""
 import json
 
+
 class FileStorage:
     """file storage creation"""
     __file_path = "file.json"
