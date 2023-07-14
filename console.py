@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """entry point of the command interpreter"""
+
 import cmd
 from models.base_model import BaseModel
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     """Entry point of the command interpreter"""
@@ -44,13 +46,13 @@ class HBNBCommand(cmd.Cmd):
                 print(objects[key])
             except KeyError:
                 print("** no instance found **")
-        
+
         elif len(args) == 0:
             print("** class name missing **")
-        
+
         elif len(args) == 1 and args[0] in self.classes:
             print("** instance id missing **")
-        
+
         else:
             print("** class doesn't exist **")
 
@@ -66,13 +68,13 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             except KeyError:
                 print("** no instance found **")
-        
+
         elif len(args) == 0:
             print("** class name missing **")
-        
+
         elif len(args) == 1 and args[0] in self.classes:
             print("** instance id missing **")
-        
+
         else:
             print("** class doesn't exist **")
 
@@ -81,17 +83,17 @@ class HBNBCommand(cmd.Cmd):
             based on class name or not
         """
         objects = storage.all()
-        
+
         if len(arg) >= 1 and arg in self.classes:
             objList = [str(obj) for key, obj in objects.items() if arg in key]
-        
+            print(objList)
+
         elif len(arg) >= 1 and arg not in self.classes:
             print("** class doesn't exist **")
-        
+
         else:
             objList = [str(obj) for key, obj in objects.items()]
-        
-        print(objList)
+            print(objList)
 
     def do_update(self, arg):
         """Updates an instance based on class name and id"""
