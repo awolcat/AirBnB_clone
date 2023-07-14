@@ -29,11 +29,26 @@ class FileStorage:
     def reload(self):
         """reloads"""
         from models.base_model import BaseModel
+        from models.user import User
         try:
             with open(self.__file_path, 'r') as f:
                 data = json.load(f)
                 for key, obj in data.items():
-                    newObj = eval(obj['__class__'])(**obj)
-                    self.__objects[key] = newObj
+                    if obj['__class__'] == 'BaseModel':
+                        newObj = eval(obj['__class__'])(**obj)
+                        self.__objects[key] = newObj
+                    elif obj['__class__'] == 'User':
+                        newObj = eval(obj['__class__'])(**obj)
+                        user_attrs = obj.keys()
+                        if 'email' in user_attrs:
+                            newObj.email = obj['email']
+                        if 'first_name' in user_attrs:
+                            newObj.first_name = obj['first_name']
+                        if 'last_name' in user_attrs:
+                            newObj.last_name = obj['last_name']
+                        if 'password' in user_attrs:
+                            newObj.password = obj['password']
+                        self.__objects[key] = newObj
+
         except FileNotFoundError:
             pass
