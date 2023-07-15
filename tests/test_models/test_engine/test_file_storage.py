@@ -36,7 +36,7 @@ class TestFileStorage(unittest.TestCase):
     def teardown(self):
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
 
     def test_pep8_filestorage(self):
@@ -82,7 +82,7 @@ class TestFileStorage(unittest.TestCase):
 
         try:
             os.remove(path)
-        except:
+        except Exception:
             pass
 
         self.storage.save()
@@ -94,7 +94,7 @@ class TestFileStorage(unittest.TestCase):
 
         try:
             os.remove(path)
-        except:
+        except Exception:
             pass
 
         with open(path, "w") as f:

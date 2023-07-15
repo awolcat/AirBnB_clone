@@ -4,8 +4,8 @@
 import unittest
 import datetime
 from models import base_model
-
 BaseModel = base_model.BaseModel
+
 
 class TestBaseModel(unittest.TestCase):
     """Unit Testing for BaseModel class"""
@@ -26,7 +26,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(len(dict_doc) > 0)
 
     def test_init(self):
-        """Test cases for BaseModel.__init__()""" 
+        """Test cases for BaseModel.__init__()"""
         obj = BaseModel()
         self.assertIsInstance(obj.created_at, datetime.datetime)
         self.assertIsInstance(obj.updated_at, datetime.datetime)
@@ -54,4 +54,3 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(objDict['created_at'], str)
         self.assertIsInstance(objDict['id'], str)
         self.assertEqual(objDict['__class__'], "BaseModel")
-
