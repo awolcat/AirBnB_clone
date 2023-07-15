@@ -145,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
             for key, obj in objects.items():
                 cls = key.split('.')[0]
                 if args[0] == cls:
-                    count+=1
+                    count = count + 1
             print(count)
 
 
