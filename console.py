@@ -139,9 +139,14 @@ class HBNBCommand(cmd.Cmd):
                 if args[0] == cls:
                     my_list.append(str(obj))
             print(my_list)
-        else:
-            pass
 
+        elif args[0] in self.classes and args[1] == 'count()':
+            count = 0
+            for key, obj in objects.items():
+                cls = key.split('.')[0]
+                if args[0] == cls:
+                    count+=1
+            print(count)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
