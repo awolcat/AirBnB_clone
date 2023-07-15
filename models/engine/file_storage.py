@@ -91,7 +91,7 @@ class FileStorage:
                         if 'name' in amenity_attrs:
                             newObj.name = obj['name']
                         self.__objects[key] = newObj
-                    
+
                     elif obj['__class__'] == 'City':
                         newObj = eval(obj['__class__'])(**obj)
                         city_attrs = obj.keys()
