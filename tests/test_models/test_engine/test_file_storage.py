@@ -13,7 +13,8 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from models.engine.file_storage import FileStorage
+from models.engine import file_storage
+FileStorage = file_storage.FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -46,6 +47,15 @@ class TestFileStorage(unittest.TestCase):
         style = pycodestyle.StyleGuide(quiet=True)
         p = style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
+
+    def test_documentation(self):
+        """
+        tests for dostrings
+        """
+        module_doc = file_storage.__doc__
+        class_doc = FileStorage.__doc__
+        self.assertTrue(len(module_doc) > 1)
+        self.assertTrue(len(class_doc) > 1)
 
     def test_all_filestorage(self):
         """
