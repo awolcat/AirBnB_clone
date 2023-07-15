@@ -3,6 +3,7 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -10,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     """Entry point of the command interpreter"""
     prompt = '(hbnb) '
 
-    classes = ['BaseModel']
+    classes = ['BaseModel', 'User']
 
     def do_quit(self, arg):
         """Exit the program"""
@@ -25,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         "Create an instance of BaseModel"
         if arg in self.classes:
-            new = BaseModel()
+            new = eval(arg)()
             new.save()
             print(new.id)
 
@@ -47,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
             except KeyError:
                 print("** no instance found **")
 
-        elif len(args) == 0:
+        elif len(args) >= 1 and len(args[0]) == 0:
             print("** class name missing **")
 
         elif len(args) == 1 and args[0] in self.classes:
@@ -69,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
             except KeyError:
                 print("** no instance found **")
 
-        elif len(args) == 0:
+        elif len(args) == 1 and len(args[0]) == 0:
             print("** class name missing **")
 
         elif len(args) == 1 and args[0] in self.classes:
@@ -98,12 +99,12 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """Updates an instance based on class name and id"""
         objects = storage.all()
-        args = arg.split()
-        if len(args) == 0:
+        args = arg.split(' ')
+        if len(args) >= 1 and len(args[0]) < 1:
             print("** class name missing **")
         elif len(args) >= 1 and args[0] not in self.classes:
             print("** class doesn't exist **")
-        elif len(args) == 1:
+        elif len(args) == 1 and args[0] in self.classes:
             print("** instance id missing **")
         elif len(args) >= 2 and args[0] in self.classes:
             key = ".".join(args[0:2])
