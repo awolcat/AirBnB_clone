@@ -128,6 +128,20 @@ class HBNBCommand(cmd.Cmd):
                 obj.save()
                 print(obj.id)
 
+    def default(self, arg):
+        """Default cammand interpretation"""
+        objects = storage.all()
+        args = arg.split('.')
+        if args[0] in self.classes and args[1] == 'all()':
+            my_list = []
+            for key, obj in objects.items():
+                cls = key.split('.')[0]
+                if args[0] == cls:
+                    my_list.append(str(obj))
+            print(my_list)
+        else:
+            pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
