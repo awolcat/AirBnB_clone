@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Place class"""
+    """Place class that defines attributes specific to Place"""
     city_id = "" # Will be City.id
     user_id = "" # Will be User.id
     name = ""
