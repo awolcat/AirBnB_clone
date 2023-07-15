@@ -11,7 +11,7 @@ class TestAmenity(unittest.TestCase):
 
     def test_amenity_doc(self):
         """Test amenity module and class documentation"""
-        module_doc = ameity.__doc__
+        module_doc = amenity.__doc__
         class_doc = Amenity.__doc__
         self.assertTrue(len(module_doc) > 1)
         self.assertTrue(len(class_doc) > 1)
