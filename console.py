@@ -48,15 +48,15 @@ class HBNBCommand(cmd.Cmd):
         """Display an object given an existing id"""
         objects = storage.all()
         args = arg.split(' ')
+        key = ".".join(args)
 
-        if len(args) == 2 and args[0] in self.classes:
-            key = "{}.{}".format(args[0], args[1])
-            if key in objects:
+        if len(args) >= 2 and args[0] in self.classes:
+            try:
                 print(objects[key])
-            else:
+            except KeyError:
                 print("** no instance found **")
 
-        elif len(args) == 0:
+        elif len(args) >= 1 and len(args[0]) == 0:
             print("** class name missing **")
 
         elif len(args) == 1 and args[0] in self.classes:
@@ -69,16 +69,16 @@ class HBNBCommand(cmd.Cmd):
         """Destroy an object"""
         objects = storage.all()
         args = arg.split(' ')
+        key = ".".join(args)
 
-        if len(args) == 2 and args[0] in self.classes:
-            key = "{}.{}".format(args[0], args[1])
-            if key in objects:
+        if len(args) >= 2 and args[0] in self.classes:
+            try:
                 del objects[key]
                 storage.save()
-            else:
+            except KeyError:
                 print("** no instance found **")
 
-        elif len(args) == 0:
+        elif len(args) == 1 and len(args[0]) == 0:
             print("** class name missing **")
 
         elif len(args) == 1 and args[0] in self.classes:
@@ -149,20 +149,6 @@ class HBNBCommand(cmd.Cmd):
                     count = count + 1
             print(count)
 
-        elif args[0] in self.classes and args[1] == 'show()':
-            print("** instance id missing **")
 
-        elif args[0] in self.classes and args[1].startswith('show(') and args[1].endswith(')'):
-            instance_id = args[1][5:-1]
-            key = "{}.{}".format(args[0], instance_id)
-            if key in objects:
-                print(objects[key])
-            else:
-                print("** no instance found **")
-
-        elif args[0] in self.classes and args[1] == 'destroy()':
-            print("** instance id missing **")
-
-        elif args[0] in self.classes and args[1].startswith('destroy(') and args[1].endswith(')'):
-            instance_id = args[1][8:-1]
-            key = "{}
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
