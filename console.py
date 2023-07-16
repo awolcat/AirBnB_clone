@@ -126,7 +126,6 @@ class HBNBCommand(cmd.Cmd):
                 value = args[3].strip("'\"")
                 setattr(obj, attr, value)
                 obj.save()
-                print(obj.id)
 
     def default(self, arg):
         """Default cammand interpretation"""
