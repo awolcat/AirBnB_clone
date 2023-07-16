@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""entry point of the command interpreter"""
+"""Entry point of the command interpreter"""
 
 import cmd
 from models.base_model import BaseModel
@@ -23,14 +23,16 @@ class HBNBCommand(cmd.Cmd):
         """Exit the program"""
         return True
 
-    do_EOF = do_quit
+    def do_EOF(self, arg):
+        """Exit the program"""
+        return True
 
     def emptyline(self):
         """Do nothing on empty line"""
         pass
 
     def do_create(self, arg):
-        "Create an instance of BaseModel"
+        """Create an instance of BaseModel"""
         if arg in self.classes:
             new = eval(arg)()
             new.save()
@@ -43,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, arg):
-        "Display an object given an existing id"
+        """Display an object given an existing id"""
         objects = storage.all()
         args = arg.split(' ')
         key = ".".join(args)
@@ -92,15 +94,15 @@ class HBNBCommand(cmd.Cmd):
         objects = storage.all()
 
         if len(arg) >= 1 and arg in self.classes:
-            objList = [str(obj) for key, obj in objects.items() if arg in key]
-            print(objList)
+            obj_list = [str(obj) for key, obj in objects.items() if arg in key]
+            print(obj_list)
 
         elif len(arg) >= 1 and arg not in self.classes:
             print("** class doesn't exist **")
 
         else:
-            objList = [str(obj) for key, obj in objects.items()]
-            print(objList)
+            obj_list = [str(obj) for key, obj in objects.items()]
+            print(obj_list)
 
     def do_update(self, arg):
         """Updates an instance based on class name and id"""
@@ -128,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
                 obj.save()
 
     def default(self, arg):
-        """Default cammand interpretation"""
+        """Default command interpretation"""
         objects = storage.all()
         args = arg.split('.')
         if args[0] in self.classes and args[1] == 'all()':
