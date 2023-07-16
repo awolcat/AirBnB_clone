@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         """Destroy an object"""
         objects = storage.all()
         args = arg.split(' ')
-        key = ".".join(args)
+        key = ".".join(args[1:])
 
         if len(args) >= 2 and args[0] in self.classes:
             try:
