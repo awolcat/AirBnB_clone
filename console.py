@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         """Display an object given an existing id"""
         objects = storage.all()
         args = arg.split(' ')
-        key = ".".join(args)
+        key = ".".join(args[1:])
 
         if len(args) >= 2 and args[0] in self.classes:
             try:
