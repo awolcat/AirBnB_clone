@@ -3,6 +3,7 @@
 
 from models import user
 import unittest
+import datetime
 User = user.User
 
 
@@ -26,6 +27,9 @@ class TestUser(unittest.TestCase):
         self.assertIsNotNone(user_1.id)
         self.assertIsNotNone(user_1.updated_at)
         self.assertIsNotNone(user_1.created_at)
+        self.assertIsInstance(user_1.id, str)
+        self.assertIsInstance(user_1.updated_at, datetime.datetime)
+        self.assertIsInstance(user_1.created_at, datetime.datetime)
         self.assertTrue(user_1.first_name == 'Jo')
         self.assertTrue(user_1.last_name == 'Shmo')
         self.assertTrue(user_1.email == 'shmo@mail.com')
