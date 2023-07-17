@@ -34,3 +34,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(user_1.last_name == 'Shmo')
         self.assertTrue(user_1.email == 'shmo@mail.com')
         self.assertTrue(user_1.password == 'RoOt')
+        self.assertIsNotNone(user_1.first_name)
+        self.assertIsNotNone(user_1.last_name)
+        self.assertIsNotNone(user_1.email)
+        self.assertIsNotNone(user_1.password)
