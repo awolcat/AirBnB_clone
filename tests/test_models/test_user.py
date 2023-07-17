@@ -2,6 +2,7 @@
 """Tests for User Class"""
 
 from models import user
+from models.base_model import BaseModel
 import unittest
 import datetime
 User = user.User
@@ -24,6 +25,7 @@ class TestUser(unittest.TestCase):
         user_1.last_name = 'Shmo'
         user_1.email = 'shmo@mail.com'
         user_1.password = 'RoOt'
+        self.assertIsInstance(user_1, BaseModel)
         self.assertIsNotNone(user_1.id)
         self.assertIsNotNone(user_1.updated_at)
         self.assertIsNotNone(user_1.created_at)
